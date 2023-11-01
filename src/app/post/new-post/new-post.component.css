@@ -1,0 +1,8 @@
+.colorBtn{
+    background-color: var(--primary-color);
+}
+
+.imagePreview{
+    height: 200px;
+    
+}

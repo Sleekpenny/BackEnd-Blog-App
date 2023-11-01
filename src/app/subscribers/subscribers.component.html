@@ -1,0 +1,43 @@
+<div class="allPostWrapper">
+    <div class="rounded box-Prop box-SecColor p-2 max-w-7xl mx-auto mb-20">
+        <div class="text-center w-full p-4 ">
+            <p class="text-2xl font-bold">All Subscribers</p>
+            <p class="text-sm">Manage your subscribers here</p>
+        </div>
+        
+       <div class="flex gap-2 justify-center items-center">
+
+        <button class="rounded text-black bg-orange-500 p-3" routerLink="">Back to Dashboard</button>
+       </div>
+       </div>
+</div>
+
+
+<div class="VisualSubmission flex justify-center items-center">
+    <div class="box-Prop ">
+        <table class="widthRem">
+            <thead class="">
+                <tr class=" flex gap-4 justify-between p-5 items-center">
+                    <th class="text-center w-24 mx-auto ">No</th>
+                    <th class="text-center w-24 mx-auto  ">Nmae</th>                  
+                    <th class="text-center w-64 mx-auto  ">Email</th>
+                    <th class="text-center w-20 mx-auto  ">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let user of subEmails; let i = index"
+                    class=" flex gap-4 justify-between p-2 ">
+
+                    <td class="text-center w-24 mx-auto ">{{i+1}}</td> 
+                    <td class="text-justify w-24 break-words overflow-hidden mx-auto">{{user.data.name}}</td>
+                    <td class="text-center  w-64 break-words overflow-hidden mx-auto">{{user.data.email}}</td>
+
+                    <td class="flex gap-4 items-center mx-auto">                       
+                        <button class="bg-red-600 text-white p-2 rounded" (click)="deleteMethod(user.id)">Delete</button>                     
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

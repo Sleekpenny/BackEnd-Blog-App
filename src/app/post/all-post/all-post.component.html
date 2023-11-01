@@ -1,0 +1,56 @@
+<div class="allPostWrapper">
+    <div class="rounded box-Prop box-SecColor p-2 max-w-7xl mx-auto mb-20">
+        <div class="text-center w-full p-4 ">
+            <p class="text-2xl font-bold">All Blog Posts</p>
+            <p class="text-sm">You can add new post here</p>
+        </div>
+        
+       <div class="flex gap-2 justify-center items-center">
+        <button class="rounded text-white colorBtn p-3" routerLink="/posts/new">Add New Post</button>
+        <button class="rounded text-black bg-orange-500 p-3" routerLink="">Back to Dashboard</button>
+       </div>
+       </div>
+</div>
+
+<div class="VisualSubmission flex justify-center items-center">
+    <div class="box-Prop ">
+        <table class="widthRem">
+            <thead class="">
+                <tr class=" flex gap-4 justify-between p-5 items-center">
+                    <th>No</th>
+                    <th class="text-center w-24 mx-auto  ">Post Image</th>
+                    <th class="text-center w-20 mx-auto  ">Title</th>
+             
+                    <th class="text-center w-44 mx-auto  ">Category</th>
+                    <th class="text-center w-32 mx-auto  ">Date</th>
+                    <th class="text-center w-20 mx-auto  ">Actions</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let post of PostData; let i = index"
+                    class=" flex gap-4 justify-between p-5">
+
+                    <td>{{i+1}}</td>              
+                    <td class="w-24 mx-auto  "><img src="{{post.data.image}}" class="imagePreview mx-auto"></td>
+                    <td class="text-center   w-20 mx-auto overflow-hidden">{{post.data.title}}</td>
+                   
+                    <td class="text-justify  h-28 w-44 break-words overflow-hidden mx-auto">{{post.data.categorys.category}}</td>
+                    <td class="text-center  h-28 w-32 break-words overflow-hidden mx-auto">{{post.data.createdAt.toMillis() | date}}</td>               
+
+
+                    <td class="flex gap-2 items-center mx-auto flex-col">
+                        <div class="fles space-x-4">
+                        <button class="bg-green-600 text-white p-2 rounded" routerLink="/posts/new" [queryParams]="{id: post.id}">Edit</button>
+                        <button class="bg-red-600 text-white p-2 rounded" (click)="deleteMethod(post.data.image, post.id)">Delete</button>
+                    </div>
+                        <button class="bg-red-400 text-white p-2 rounded" *ngIf="!post.data.isFeatured" (click)="featured(post.id, true)">Mark Featured</button>
+                        <button class="bg-red-800 text-white p-2 rounded"  *ngIf="post.data.isFeatured" (click)="featured(post.id, false)" >Remove Featured</button>
+
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+

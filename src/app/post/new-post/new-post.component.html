@@ -1,0 +1,145 @@
+<div class="newPost">
+    <div class="w-full text-center">
+        <p class="text-2xl font-bold">{{postEditing}} Post</p>
+        <p class="text-sm mt-2">You can add your {{smallEditing}} here</p>
+    </div>
+
+    <div class=" max-w-7xl mx-auto mb-20 mt-8" >
+    <form #form="ngForm" (submit)="onSubmit(form)" >
+
+        <div class="flex justify-between gap-4" >            
+            <div class="box-Prop rounded p-4 w-full">
+                
+                    <label>Title</label>
+                    <input 
+                    type="text" 
+                    class="w-full mb-2 p-2 border outline-none" 
+                    (keyup)="onKeyUp($event)" 
+                    name="title" 
+                    ngModel 
+                    #titleBox="ngModel" 
+                    required minlength="5"
+                    [(ngModel)]="loadEdit.title">
+
+                    <div class="p-2" *ngIf="titleBox.touched && titleBox.invalid">
+                        <div *ngIf="titleBox.errors?.['required']">
+                            <p class="w-full bg-orange-300 text-center text-white">Title is required</p>
+                        </div>                      
+                        <div *ngIf="titleBox.errors?.['minlength']">
+                            <p class="w-full bg-orange-300 text-center text-white">Title must be at least 5 characters</p>
+                        </div>                      
+                    </div>                    
+                                       
+                    <label>Permalink</label>
+                    <input 
+                    type="text" 
+                    class="w-full mb-2 p-2 border outline-none" 
+                    [(ngModel)]="permaLink" 
+                    name="parmanentLink" 
+                    [(ngModel)]="loadEdit.parmanentLink"
+                    ngModel>
+
+                    
+                    <label>Excerpt</label>
+                    <textarea 
+                    cols="30" rows="10" 
+                    class="w-full border outline-none" 
+                    ngModel 
+                    name="excerpt" 
+                    #excerptBox="ngModel" 
+                    required
+                    minlength="5"
+                    [(ngModel)]="loadEdit.excerpt"
+                    ></textarea>
+
+                    <div class="p-2" *ngIf="excerptBox.touched && excerptBox.invalid" >
+                        <div *ngIf="excerptBox.errors?.['required']">
+                            <p class="w-full bg-orange-300 text-center text-white">Excerpt is required</p>
+                        </div>                      
+                        <div *ngIf="excerptBox.errors?.['minlength']">
+                            <p class="w-full bg-orange-300 text-center text-white">Excerpt must be at least 5 characters</p>
+                        </div>                      
+                    </div>
+                
+            </div>
+
+            <div class=" w-full box-Prop">
+
+                <div class=" rouned p-4">
+                <label>Please select a post category </label>
+                    <select class="w-full border p-2 outline-none" 
+                    ngModel 
+                    name="category" 
+                    #categoryBox="ngModel" 
+                    required
+                   >
+                        <option disabled> Pick a  category</option>
+                        <option  *ngFor="let value of selectedCatergories" value="{{value.id}}-{{value.data.category}}"> {{value.data.category}}</option>
+                    </select>
+
+                    <div class="p-2" *ngIf="categoryBox.touched && categoryBox.invalid" >
+                        <div *ngIf="categoryBox.errors?.['required']">
+                            <p class="w-full bg-orange-300 text-center text-white">Pick a category</p>
+                        </div>                                                           
+                    </div>
+
+                </div>
+
+                <div class=" rouned p-2">
+                    <label for="" class=""> Post Image</label>
+                    <img [src]="imgSrc" class="imagePreview mx-auto">
+                    <input 
+                    type="file" 
+                    class="w-full p-2 border" 
+                    accept="image/*" 
+                    (change)="ImageChange($event)" 
+                    required  
+                    name="image"
+                    ngModel
+                    #imageBox="ngModel"
+                   >
+
+                    <div class="p-2" *ngIf="imageBox.touched && imageBox.invalid" >
+                        <div *ngIf="imageBox.errors?.['required']">
+                            <p class="w-full bg-orange-300 text-center text-white">Select a image </p>
+                        </div>                                                           
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full box-Prop mt-4 border p-4">
+             <label for="">Content</label>
+             <angular-editor 
+             placeholder="Add your content here" 
+             class="outline-none" 
+             ngModel
+             #contentBox="ngModel"
+             minlength="50"
+             name="content"
+             required
+             [(ngModel)]="loadEdit.content"></angular-editor>
+
+             <div class="p-2" *ngIf="contentBox.touched && contentBox.invalid" >
+                <div *ngIf="contentBox.errors?.['required']">
+                    <p class="w-full bg-orange-300 text-center text-white">Content is required</p>
+                </div>                      
+                <div *ngIf="contentBox.errors?.['minlength']">
+                    <p class="w-full bg-orange-300 text-center text-white">Excerpt must be at least 50 characters</p>
+                </div>                      
+            </div>
+
+        </div>
+
+        <div class="flex gap-2 justify-center items-center mt-4">
+            <button class="rounded text-white colorBtn p-3" [disabled]="form.invalid" >{{postSaving}}</button>
+            <button class="rounded text-black bg-orange-500 p-3" routerLink="/posts" type="button">Back to Post</button>
+        </div>
+    </form>
+
+  
+    </div>
+   
+
+</div>

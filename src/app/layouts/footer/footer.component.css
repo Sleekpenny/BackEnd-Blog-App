@@ -1,0 +1,19 @@
+footer {
+    margin-top: 45vh; 
+    background-color: var(--navbar-footer-color);
+    
+}
+
+.bgHeader{
+    background-color: var(--secondary-color);
+    color : var(--primary-color)
+    
+}
+
+.activelogo:active{
+    transform: translateY(-3px);
+}
+
+.detailList{
+    color: var(--primary-color)
+}

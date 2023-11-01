@@ -1,0 +1,57 @@
+<div class="categoriesWrapper">
+
+<div class="rounded box-Prop box-SecColor p-2 max-w-7xl mx-auto mb-20">
+    <div class="text-center w-full p-4 ">
+        <p class="text-2xl font-bold">{{formStatusHeader}} Categories</p>
+        <p class="text-sm">You can add new categories here</p>
+    </div>
+
+    <form class="p-8 flex justify-between items-center " #form="ngForm" (submit)="onSubmit(form)">
+        <div class="flex flex-col w-full">
+            <input 
+            type="text"
+            placeholder="Add your category here" 
+            class="outline-none p-3 box-Prop w-full"
+            [(ngModel)]="formEdit" 
+            #newCategory='ngModel'
+            name="category" 
+            required>
+            <div class="p-2" *ngIf="newCategory.touched && newCategory.invalid">
+                <p class="w-full bg-orange-300 text-center text-white">Fill a category</p>
+            </div>
+        </div>
+
+        <button class=" text-white colorBtn rounded ml-4 w-40 p-3" [disabled]="form.invalid">{{formStatusSubmit}}
+            Category </button>
+
+    </form>
+</div>
+
+<div class="VisualSubmission flex justify-center items-center">
+    <div class="box-Prop ">
+        <table class="widthRem">
+            <thead class="">
+                <tr class=" flex gap-4 justify-between p-5 items-center">
+                    <th>No</th>
+                    <th>Categories</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let category of dataResult; let i = index"
+                    class=" flex gap-4 justify-between p-5 items-center">
+                    <td>{{i+1}}</td>
+                    <td class="text-center">{{category.data.category}}</td>
+                    <td class="flex gap-4 items-center">
+                        <button class="bg-green-600 text-white p-2 rounded"
+                            (click)="onEdit(category.data.category, category.id)">Edit</button>
+                        <button class="bg-red-600 text-white p-2 rounded"
+                            (click)="onDetele(category.id)">Delete</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</div>

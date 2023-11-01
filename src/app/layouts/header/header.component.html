@@ -1,0 +1,10 @@
+<div class="cursor-pointer fixed w-full top-0 h-28 bg-white  flex justify-center items-center box-Prop" [ngStyle]="navBg" >  
+    <div class="bgHeader px-2 py-1 rounded-xl text-lg font-bold activelogo">
+        <a href="#">SLEEKIE BLOG</a>
+    </div>
+
+    <div class="float-right right-4 absolute flex gap-4" *ngIf ="isLoggedIn$ | async">
+        <a href="" class="p-2">{{userEmail}}</a>
+        <p  class="rounded text-white colorBtn p-2" (click)="LoggedOut()">logout</p>
+    </div>
+</div>

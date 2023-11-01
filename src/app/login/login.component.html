@@ -1,0 +1,45 @@
+<div class="allPostWrapper">
+    <div class="rounded box-Prop box-SecColor p-2 max-w-xl mx-auto mb-20">
+        <div class="text-center w-full ">
+            <p class="text-3xl font-bold mb-4">Login</p>
+            <p class="text-lg">Please login to your admin account to post a new blog post</p>
+        </div>
+        
+       <div class="p-16">
+        <form class="flex  flex-col gap-3" #form="ngForm" (submit)="onSubmit(form)">
+            <input 
+            type="email"
+            email
+            name="email"
+            ngModel
+            #email="ngModel"
+            placeholder="Email"
+            class="w-4/5 outline-none rounded p-2 bg-white mx-auto "
+            required>
+
+            <div *ngIf="email.touched && email.invalid" class="w-4/5 mx-auto ">
+                <div *ngIf="email.errors?.['required']" class=" bg-orange-300 text-center text-white  ">Please your email is required</div>
+                <div *ngIf="email.errors?.['email']" class=" bg-orange-300 text-center text-white px-2">Invalid character</div>
+            </div>
+           
+            <input 
+            type="password"
+            password
+            name="password"
+            ngModel
+            #password="ngModel"
+            placeholder="Password"
+            class="w-4/5 outline-none rounded p-2 bg-white mx-auto "
+            required
+            minlength="5">
+
+            <div *ngIf="password.touched && password.invalid" class="w-4/5 mx-auto">
+                <div *ngIf="password.errors?.['required']" class=" bg-orange-300 text-center text-white px-2">Please your password is required</div>
+                <div *ngIf="password.errors?.['minlength']" class=" bg-orange-300 text-center text-white px-2">Your password must be at least 5 characters</div>
+            </div>
+ 
+            <button class="rounded text-white colorBtn p-3 w-4/5 mx-auto mt-4" [disabled]="form.invalid">Login</button>
+        </form>
+       </div>
+       </div>
+</div>

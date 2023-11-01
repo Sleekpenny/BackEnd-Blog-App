@@ -1,0 +1,15 @@
+.bgHeader{
+    background-color: var(--secondary-color);
+    
+}
+
+.bgHeader a {
+    color : var(--primary-color)
+}
+
+.activelogo:active{
+    transform: translateY(-3px);
+}
+.colorBtn{
+    background-color: var(--primary-color);
+}

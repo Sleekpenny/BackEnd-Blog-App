@@ -1,0 +1,17 @@
+
+.box-SecColor {
+    background-color: var(--secondary-color);
+
+}
+
+.colorBtn{
+    background-color: var(--primary-color);
+}
+
+.widthRem{
+    width: 75rem
+}
+
+.imagePreview{
+    height: 100px;
+}

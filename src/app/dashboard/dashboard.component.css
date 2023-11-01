@@ -1,0 +1,14 @@
+.dashBox{
+    background-color: var(--secondary-color);
+    color : var(--primary-color);
+    transition: all 0.5s;
+}
+.dashBox:hover{
+    background-color: #b9d3c1;
+  
+}
+
+.dashBox:active{
+    transform: translateY(-3px);
+}
+

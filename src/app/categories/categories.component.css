@@ -1,0 +1,13 @@
+
+.box-SecColor {
+    background-color: var(--secondary-color);
+
+}
+
+.colorBtn{
+    background-color: var(--primary-color);
+}
+
+.widthRem{
+    width: 35rem
+}
